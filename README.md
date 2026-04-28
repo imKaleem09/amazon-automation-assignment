@@ -1,9 +1,33 @@
-# Amazon Automation Testing
+# Amazon Automation Assignment
 
-## Install
-pip install -r requirements.txt
+Automated test cases for Amazon product search and add-to-cart functionality using Python, Selenium, Pytest, and parallel execution with pytest-xdist.
 
-## Run
-python -m pytest -n 2
-# amazon-automation-assignment
-Automated test cases for Amazon product search and cart functionality using Python, Selenium, Pytest, and parallel execution with pytest-xdist.
+## Test Cases
+
+### Test Case 1
+- Navigate to Amazon
+- Search for **iPhone 15**
+- Open the first product
+- Print the product price in console
+- Add the product to cart
+
+### Test Case 2
+- Navigate to Amazon
+- Search for **Samsung Galaxy S24**
+- Open the first product
+- Print the product price in console
+- Add the product to cart
+
+## Tech Stack
+- Python
+- Selenium WebDriver
+- Pytest
+- Pytest-xdist
+- LambdaTest Cloud
+
+## Installation Steps
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/imKaleem09/amazon-automation-assignment.git
+cd amazon-automation-assignment
