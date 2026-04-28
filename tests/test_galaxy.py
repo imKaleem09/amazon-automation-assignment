@@ -1,18 +1,39 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-def test_search_galaxy():
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    driver.maximize_window()
-    driver.get("https://www.amazon.in/")
+# LambdaTest credentials
+username = "kaleem897998"
+access_key = "LT_MKOSJBtfno0BU6r5phe51h46Tz8QbIKzqru6dOGFcaPBEQ3"
 
-    wait = WebDriverWait(driver, 10)
+grid_url = f"https://{username}:{access_key}@hub.lambdatest.com/wd/hub"
+
+def test_search_galaxy():
+    options = Options()
+
+    lt_options = {
+        "platformName": "Windows 10",
+        "browserName": "Chrome",
+        "browserVersion": "latest",
+        "build": "Amazon Automation Build",
+        "name": "Galaxy Test"
+    }
+
+    options.set_capability("LT:Options", lt_options)
+
+    driver = webdriver.Remote(
+        command_executor=grid_url,
+        options=options
+    )
+
+    driver.get("https://www.amazon.in/")
+    driver.maximize_window()
+
+    wait = WebDriverWait(driver, 15)
 
     box = wait.until(EC.presence_of_element_located((By.ID, "twotabsearchtextbox")))
     box.send_keys("Samsung Galaxy S24")
@@ -44,5 +65,5 @@ def test_search_galaxy():
     except:
         print("Cart button not found")
 
-    time.sleep(3)
+    time.sleep(5)
     driver.quit()
